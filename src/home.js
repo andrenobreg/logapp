@@ -56,7 +56,7 @@ class Home extends React.PureComponent {
     inserirNota(){
         let i = this.state.basenotas.length;
         i = i+1;
-        this.state.basenotas[i] = this.state.value;
+        this.state.basenotas[i] = {date: new Date().toLocaleString(), nota: this.state.value}; //this.state.value;
         this.setState({value: ''});
         this.updateScroll()
       }
@@ -92,7 +92,7 @@ class Home extends React.PureComponent {
                     <input type="text"  placeholder="Pesquisa..."  id="entradabusca" onKeyUp={filterFunction} style={{paddingLeft:"5px", height:"30px", width:"50vw", float:"right", marginTop:"9px", marginRight:"10px", boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", outline:"0"}}/>
                 </div>
                         <div id="board" style={{boxShadow: "inset 0px 0px 8px black", scrollBehavior:"smooth", display:"flex", flexDirection:"column", backgroundColor:"#eed1d1", position:"relative", height:this.state.height, overflow:"auto", paddingBottom:"10px"}}>
-                        {this.state.basenotas.map((nota) => (<a className="resultados">{Cardnota(nota)}</a>) )}
+                        {this.state.basenotas.map((objeto) => (<a className="resultados">{Cardnota(objeto.date, objeto.nota)}</a>) )}
                         </div>
                         <div style={{whiteSpace:"pre-wrap", boxSizing:"border-box", display: "flex", width:"100%", maxHeight:"200px", backgroundColor:"red", position:"absolute", bottom:"0", paddingTop:"18px", paddingBottom:"18px", paddingLeft:"2vw", paddingRight:"2vw"}}>
                         <textarea

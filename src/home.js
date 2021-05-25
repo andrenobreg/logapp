@@ -8,7 +8,7 @@ class Home extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-            height: "calc(100vh - 250px)",
+            height: "auto",//"calc(100vh - 250px)",
             basenotas: Database().basenotas,
             value: "",
 			rows: 2,
@@ -86,14 +86,21 @@ class Home extends React.PureComponent {
 		return (
 			<div>
             <html>
-                <body>
+
+                <header>
                 <div style={{boxShadow: "5px 5px 10px black", width:"100%", height:"50px", backgroundColor:"red", position:"relative"}}>
                     <img src={logo} style={{float:"left", padding:"6px"}}/>
                     <input type="text"  placeholder="Pesquisa..."  id="entradabusca" onKeyUp={filterFunction} style={{paddingLeft:"5px", height:"30px", width:"50vw", float:"right", marginTop:"9px", marginRight:"10px", boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", outline:"0"}}/>
                 </div>
-                        <div id="board" style={{boxShadow: "inset 0px 0px 8px black", scrollBehavior:"smooth", display:"flex", flexDirection:"column", backgroundColor:"#eed1d1", position:"relative", height:this.state.height, overflow:"auto", paddingBottom:"10px"}}>
+                </header>
+
+                <body>
+                        <div id="board" style={{boxShadow: "inset 0px 0px 8px black", scrollBehavior:"smooth", display:"flex", flexDirection:"column", backgroundColor:"#eed1d1", position:"relative", height:"calc(100vh - 270px)", overflow:"auto", paddingBottom:"10px"}}>
                         {this.state.basenotas.map((objeto) => (<a className="resultados">{Cardnota(objeto.date, objeto.nota)}</a>) )}
                         </div>
+                </body>
+
+                <footer>
                         <div style={{whiteSpace:"pre-wrap", boxSizing:"border-box", display: "flex", width:"100%", maxHeight:"200px", backgroundColor:"red", position:"absolute", bottom:"0", paddingTop:"18px", paddingBottom:"18px", paddingLeft:"2vw", paddingRight:"2vw"}}>
                         <textarea
                         style={{boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", lineHeight:"24px", overflow:"auto", height:"auto", padding:"8px", outline:"0", float:"left", marginLeft:"0px", marginTop:"0px", marginBottom:"0px", width:"74vw", maxHeight:"100px"}}
@@ -110,7 +117,7 @@ class Home extends React.PureComponent {
                             </div>
                         </div>
                         </div>
-                </body>
+                </footer>
             </html>
         </div>
 		);

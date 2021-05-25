@@ -8,6 +8,7 @@ function Routes(){
               <BrowserRouter>
                      <Switch>
                             <Route exact path="/" component={Home}/>;
+                            <Route exact path="/teste" component={Home}/>;
                      </Switch>
               </BrowserRouter>
 

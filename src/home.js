@@ -8,7 +8,7 @@ class Home extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-            height: "auto",//"calc(100vh - 250px)",
+            height: "calc(100vh - 221px)",
             basenotas: Database().basenotas,
             value: "",
 			rows: 2,
@@ -40,17 +40,17 @@ class Home extends React.PureComponent {
     	value: event.target.value,
       rows: currentRows < maxRows ? currentRows : maxRows,
     });
-    /*if(this.state.rows==2){
-        this.setState({height: "calc(100vh - 160px)"})
+    if(this.state.rows==2){
+        this.setState({height: "calc(100vh - 221px)"})
     }else{
         if(this.state.rows==3){
-            this.setState({height: "calc(100vh - 184px)"})
+            this.setState({height: "calc(100vh - 240px)"})
         }else{
             if(this.state.rows==4){
-                this.setState({height: "calc(100vh - 196px)"})
+                this.setState({height: "calc(100vh - 252px)"})
             }
         }
-    }*/
+    }
 	};
 
     inserirNota(){
@@ -86,38 +86,37 @@ class Home extends React.PureComponent {
 		return (
 			<div>
             <html>
+                <body style={{backgroundColor:"red", height:"100%"}}>
+                    <header>
+                    <div style={{boxShadow: "5px 5px 10px black", width:"100%", height:"50px", backgroundColor:"#444444", position:"relative"}}>
+                        <a style={{fontSize:"35px", float:"left", fontWeight:"bold", color:"white", marginLeft:"10px"}}>Log...</a>
+                        <input type="text"  placeholder="Pesquisa..."  id="entradabusca" onKeyUp={filterFunction} style={{paddingLeft:"5px", height:"30px", width:"50vw", float:"right", marginTop:"9px", marginRight:"10px", boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", outline:"0"}}/>
+                    </div>
+                    </header>
 
-                <header>
-                <div style={{boxShadow: "5px 5px 10px black", width:"100%", height:"50px", backgroundColor:"red", position:"relative"}}>
-                    <img src={logo} style={{float:"left", padding:"6px"}}/>
-                    <input type="text"  placeholder="Pesquisa..."  id="entradabusca" onKeyUp={filterFunction} style={{paddingLeft:"5px", height:"30px", width:"50vw", float:"right", marginTop:"9px", marginRight:"10px", boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", outline:"0"}}/>
-                </div>
-                </header>
-
-                <body>
-                        <div id="board" style={{boxShadow: "inset 0px 0px 8px black", scrollBehavior:"smooth", display:"flex", flexDirection:"column", backgroundColor:"#eed1d1", position:"relative", height:"calc(100vh - 270px)", overflow:"auto", paddingBottom:"10px"}}>
+                    <div id="board" style={{boxShadow: "inset 0px 0px 8px black", scrollBehavior:"smooth", display:"flex", flexDirection:"column", backgroundColor:"#444444", position:"relative", height:this.state.height, overflow:"auto", paddingBottom:"10px"}}>
                         {this.state.basenotas.map((objeto) => (<a className="resultados">{Cardnota(objeto.date, objeto.nota)}</a>) )}
-                        </div>
-                </body>
+                    </div>
 
-                <footer>
-                        <div style={{whiteSpace:"pre-wrap", boxSizing:"border-box", display: "flex", width:"100%", maxHeight:"200px", backgroundColor:"red", position:"absolute", bottom:"0", paddingTop:"18px", paddingBottom:"18px", paddingLeft:"2vw", paddingRight:"2vw"}}>
-                        <textarea
-                        style={{boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", lineHeight:"24px", overflow:"auto", height:"auto", padding:"8px", outline:"0", float:"left", marginLeft:"0px", marginTop:"0px", marginBottom:"0px", width:"74vw", maxHeight:"100px"}}
-                        rows={this.state.rows}
-                        value={this.state.value}
-                        placeholder={'Log...'}
-                        className={'textarea'}
-                        onChange={this.handleChange}
-                        //onKeyUp={this.handleChange}
-                        />
-                        <div>
-                            <div onClick={(event) => {this.inserirNota()}} style={{display: "flex", position:"relative", justifyContent:"center", alignItems:"center", cursor:"pointer", boxShadow: "2px 2px 2px black", backgroundColor:"white", width:"20vw", maxHeight:"100px", minHeight:"64px", height:"100%", outline:"0", border:"0", borderRadius:"3px", float:"left", marginLeft:"2vw"}}>
-                                <img src={enviar} style={{margin:"15px"}}/>
+                    <footer>
+                            <div style={{whiteSpace:"pre-wrap", boxSizing:"border-box", display: "flex", width:"100%", maxHeight:"200px", backgroundColor:"#444444", position:"absolute", bottom:"0", paddingTop:"18px", paddingBottom:"18px", paddingLeft:"2vw", paddingRight:"2vw"}}>
+                            <textarea
+                            style={{boxShadow: "2px 2px 2px black", boxSizing:"border-box", border:"none", borderRadius:"3px", resize:"none", fontSize:"20px", lineHeight:"24px", overflow:"auto", height:"auto", padding:"8px", outline:"0", float:"left", marginLeft:"0px", marginTop:"0px", marginBottom:"0px", width:"74vw", maxHeight:"100px"}}
+                            rows={this.state.rows}
+                            value={this.state.value}
+                            placeholder={'Log...'}
+                            className={'textarea'}
+                            onChange={this.handleChange}
+                            //onKeyUp={this.handleChange}
+                            />
+                            <div>
+                                <div onClick={(event) => {this.inserirNota()}} style={{display: "flex", position:"relative", justifyContent:"center", alignItems:"center", cursor:"pointer", boxShadow: "2px 2px 2px black", backgroundColor:"white", width:"20vw", maxHeight:"100px", minHeight:"64px", height:"100%", outline:"0", border:"0", borderRadius:"3px", float:"left", marginLeft:"2vw"}}>
+                                    <img src={enviar} style={{margin:"15px"}}/>
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                </footer>
+                            </div>
+                    </footer>
+                </body>
             </html>
         </div>
 		);

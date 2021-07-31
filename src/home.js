@@ -4,6 +4,7 @@ import Database from './database.js';
 import logo from './img/logo.png';
 import enviar from './img/enviar.png';
 import mic from './img/mic.png';
+import SendIcon from '@material-ui/icons/Send';
 class Home extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -101,7 +102,7 @@ class Home extends React.PureComponent {
                                 />
                                 <div>
                                     <div onClick={(event) => { this.inserirNota() }} style={{ display: "flex", position: "relative", justifyContent: "center", alignItems: "center", cursor: "pointer", boxShadow: "2px 2px 2px black", backgroundColor: "white", width: "20vw", maxHeight: "100px", minHeight: "64px", height: "100%", outline: "0", border: "0", borderRadius: "3px", float: "left", marginLeft: "2vw" }}>
-                                        <img src={enviar} style={{ margin: "15px" }} />
+                                        <SendIcon/>
                                     </div>
                                 </div>
                             </div>
